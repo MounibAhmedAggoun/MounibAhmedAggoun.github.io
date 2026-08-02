@@ -357,88 +357,6 @@
     }
 
     // ============================================
-    // Terminal Widget
-    // ============================================
-    
-    function initTerminal() {
-        const terminalInput = document.getElementById('terminalInput');
-        const terminalOutput = document.getElementById('terminalOutput');
-        if (!terminalInput || !terminalOutput) return;
-
-        const commands = {
-            'help': 'Available commands: help, whoami, about, skills, experience, education, projects, opinion, contact, sections, clear',
-            'whoami': 'mounib - Cybersecurity & Computer Science Student',
-            'about': 'CS student focused on security tooling, OSINT, reverse engineering, and defensive automation.',
-            'skills': 'Cybersecurity • Penetration Testing • Linux • Automation • OSINT',
-            'experience': "Bachelor's + Master's in progress since 2023 at Abbes Laghrour University, Khenchela, Algeria.",
-            'education': "Bachelor's + Master's in progress since 2023 at Abbes Laghrour University, Khenchela, Algeria.",
-            'projects': 'password-checker/  whale-tracker/  network-tool/',
-            'opinion': 'Privacy-first security with automation-driven defense and open-source tooling.',
-            'contact': 'Email: mounib@example.com | GitHub: github.com/nyxxaaris | LinkedIn: linkedin.com/in/nyxxaaris',
-            'sections': [
-                'Hero: Cybersecurity & penetration testing and OSINT — building secure web, app, and game systems.',
-                'About: CS student focused on security tooling, OSINT, reverse engineering, and automation.',
-                'Skills: Cybersecurity • Penetration Testing • Linux • Automation • OSINT.',
-                "Experience & Education: Bachelor's + Master's in progress since 2023 at Abbes Laghrour University, Khenchela, Algeria.",
-                'Opinion: Privacy-first security with automation-driven defense.',
-                'Contact: Email, GitHub, and LinkedIn for collaborations.'
-            ].join('\\n'),
-            'clear': () => {
-                terminalOutput.innerHTML = '';
-                return '';
-            }
-        };
-
-        function addOutput(command, response) {
-            const line = document.createElement('div');
-            line.className = 'terminal-line';
-            line.innerHTML = `<span class="terminal-prompt">$</span><span class="terminal-command">${command}</span>`;
-            terminalOutput.appendChild(line);
-
-            const responseDiv = document.createElement('div');
-            responseDiv.className = 'terminal-response';
-            responseDiv.textContent = response;
-            terminalOutput.appendChild(responseDiv);
-
-            // Scroll to bottom
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
-        }
-
-        terminalInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const command = terminalInput.value.trim().toLowerCase();
-                terminalInput.value = '';
-
-                if (!command) return;
-
-                let response = 'Command not found. Type "help" for available commands.';
-                
-                if (commands[command]) {
-                    if (typeof commands[command] === 'function') {
-                        commands[command]();
-                        return;
-                    } else {
-                        response = commands[command];
-                    }
-                }
-
-                addOutput(command, response);
-            }
-        });
-
-        // Make terminal commands clickable
-        const clickableCommands = terminalOutput.querySelectorAll('.terminal-command');
-        clickableCommands.forEach(cmd => {
-            cmd.style.cursor = 'pointer';
-            cmd.addEventListener('click', () => {
-                const command = cmd.textContent.trim();
-                terminalInput.value = command;
-                terminalInput.focus();
-            });
-        });
-    }
-
-    // ============================================
     // Contact Form
     // ============================================
     
@@ -629,7 +547,6 @@
         initHologramParallax();
         initScrollAnimations();
         initProjectCards();
-        initTerminal();
         initContactForm();
         initSmoothScrolling();
         initPerformanceOptimizations();
