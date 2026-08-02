@@ -489,8 +489,8 @@ section {
 
 .hologram-card {
     width: 100%;
-    max-width: 400px;
-    aspect-ratio: 4/3;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
     perspective: 1000px;
 }
 
@@ -518,6 +518,20 @@ section {
     position: relative;
     overflow: hidden;
     box-shadow: var(--glow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-profile-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    z-index: 1;
+    background: var(--panel);
 }
 
 .hologram-grid {
